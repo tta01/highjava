@@ -5,9 +5,10 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.Date;
 import java.util.Scanner;
 
-import kr.or.ddit.Util.JDBCUtil;
+import kr.or.ddit.Util.JDBCUtil3;
 
 /*
 	회원정보를 관리하는 프로그램을 작성하는데 
@@ -39,9 +40,11 @@ create table mymember(
 
 4개의 인터페이스 => 알맞게 호출할 줄 알아야 함
 Connection
-Statement
-Prepared & Statement
-ResultSet
+Statement & Prepared => connection이 있어야 리턴 받아 생성할 수 있음
+ResultSet -> executeQurey (select문)
+crud - executeUpddate (나머지) 
+
+끝나면 반드시 close(); !! try&catch문 finally에 넣어줌
 
 */
 public class T01MemberInfoTest {
@@ -82,13 +85,13 @@ public class T01MemberInfoTest {
 					insertMember();
 					break;
 				case 2 :  // 자료 삭제
-				
+					deleteMember();
 					break;
 				case 3 :  // 자료 수정
-				
+					updataMember();
 					break;
 				case 4 :  // 전체 자료 출력
-			
+					selectAll();
 					break;
 				case 5 :  // 작업 끝
 					System.out.println("작업을 마칩니다.");
@@ -98,6 +101,146 @@ public class T01MemberInfoTest {
 			}
 		}while(choice!=5);
 	}
+	
+	
+	/**
+	 * 전체 회원자료를 출력하기 위한 메서드
+	 */
+	private void selectAll() {
+		try {
+			
+			conn = JDBCUtil3.getConnection();
+			
+			stmt = conn.createStatement();
+			
+			String sql = "select * from mymember";
+			
+			rs = stmt.executeQuery(sql);
+			
+			System.out.println("-------------------------------------");
+			System.out.println("ID\t생성일\t이  름\t전화번호\t\t주소");
+			System.out.println("-------------------------------------");
+			
+			
+			while(rs.next()) {
+				String memId = rs.getString("mem_Id");
+				String memName = rs.getString("mem_Name");
+				String memTel = rs.getString("mem_Tel");
+				String memAddr = rs.getString("mem_Addr");
+				Date regDt= rs.getTimestamp("reg_Dt");
+				
+				System.out.println(memId + "\t" + regDt + "\t" + memName + "\t" + memTel + "\t" + memAddr);
+			}
+			
+			System.out.println("--------------------------------------");
+			System.out.println("출력 작업 끝");
+			
+		} catch (SQLException ex) {
+			ex.printStackTrace();
+		} finally {
+			JDBCUtil3.close(conn, stmt, pstmt, rs);
+		}
+	}
+	private	void deleteMember() {
+		
+		System.out.println();
+		System.out.println("수정할 회원 정보를 입력해 주세요.");
+		System.out.println("회원 ID >>");
+		
+		String memId = scan.next();
+		
+		try {
+			
+			conn = JDBCUtil3.getConnection();
+			
+			String sql = "delete from mymember where mem_id = ? ";
+			
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, memId);
+			
+			int cnt = pstmt.executeUpdate();
+			
+			if(cnt > 0) {
+				System.out.println(memId + "회원의 정보를 삭제 했습니다.");
+			} else {
+				System.out.println(memId + "회원의 정보를 삭제 실패!!");
+			}
+			
+		} catch (SQLException ex) {
+			ex.printStackTrace();
+		} finally {
+			JDBCUtil3.close(conn, stmt, pstmt, rs);
+		}
+	}
+	
+	/**
+	 * 회원정보를 수정하기 위한 메서드
+	 */
+	private void updataMember() {
+		boolean isExist = false;
+		
+		String memId="";
+		
+		do {
+			System.out.println();
+			System.out.println("수정할 회원 정보를 입력해 주세요.");
+			System.out.println("회원 ID >>");
+			
+			memId = scan.next();
+			
+			isExist = checkMember(memId);
+			
+			if(!isExist) {
+				System.out.println("회원 ID가 " + memId + "인 회원은 " + " 존재하지 않습니다.\n다시 입력해 주세요.");
+			}
+			
+		} while(!isExist);
+		
+		/*-------------------------------------------------------------------------------------------*/
+		
+		System.out.println("회원 이름 >> ");
+		String memName = scan.next();
+		
+		System.out.println("회원전화번호 >> ");
+		String memTel = scan.next();
+		
+		scan.nextLine(); // 입력버퍼 비우기
+		
+		System.out.println("회원주소 >> ");
+		String memAddr = scan.nextLine();
+		
+		try {
+			conn = JDBCUtil3.getConnection();
+			
+			String sql = " update mymember "
+				   +" set mem_name =?, "
+				   +" mem_tel =?, "
+				   +" mem_addr=? "
+				+ "where mem_id = ?";
+			
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, memName);
+			pstmt.setString(2, memTel);
+			pstmt.setString(3, memAddr);
+			pstmt.setString(4, memId);
+			
+			int cnt = pstmt.executeUpdate();
+			
+			if(cnt > 0) {
+				System.out.println(memId + "회원의 정보를 수정 했습니다.");
+			} else {
+				System.out.println(memId + "회원의 정보를 수정 실패!!");
+			}
+			
+		} catch (SQLException ex) {
+			ex.printStackTrace();
+		}finally {
+			JDBCUtil3.close(conn, stmt, pstmt, rs);
+		}
+	}
+
+		
+	
 	
 	
 	/**
@@ -146,9 +289,7 @@ public class T01MemberInfoTest {
 		
 
 		try {
-			conn = JDBCUtil.getConnection();
-//			// 커넥션(연결)할 객체를 가져옴 주소,cmd에서 생성한 유저아이디, 비밀번호
-//			conn = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe","tta","java");
+			conn = JDBCUtil3.getConnection();
 			
 			String sql = " INSERT INTO mymember ( "
 						 + "   mem_id, 	 "
@@ -165,7 +306,7 @@ public class T01MemberInfoTest {
 			pstmt.setString(4,memAddr);
 			
 			// cnt => 갯수를 세어주는게 아니라 회원 정보의 유무를 묻는 것.
-			int cnt = pstmt.executeUpdate(); 
+			int cnt = pstmt.executeUpdate(); // select만 query
 			if(cnt > 0 ) {
 				System.out.println("회원 등록 성공!");
 			}else {
@@ -175,15 +316,10 @@ public class T01MemberInfoTest {
 		} catch (SQLException ex) {
 			ex.printStackTrace();
 		}finally {
-			JDBCUtil.close(conn, stmt, pstmt, rs);
-		
-			
-			 
+			JDBCUtil3.close(conn, stmt, pstmt, rs);
 		}
-		
-		
-		
 	}
+	
 	/**
 	 * 회원아이디가 존재하는지 체크하기 위한 메서드
 	 * @param memId 회원아이디
@@ -193,13 +329,13 @@ public class T01MemberInfoTest {
 		boolean isExist = false;
 		
 		try {
-			conn = JDBCUtil.getConnection();
+			conn = JDBCUtil3.getConnection();
 			
 			String sql = "select count(*) as cnt from mymember where mem_id=?";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, memId);
 			
-			rs = pstmt.executeQuery();
+			rs = pstmt.executeQuery(); // select문으로 쓸 때만 '쿼리'!!!!
 			
 			int cnt = 0;
 			
@@ -214,22 +350,14 @@ public class T01MemberInfoTest {
 		} catch (SQLException ex) {
 			ex.printStackTrace();
 		}finally {
-			JDBCUtil.close(conn, stmt, pstmt, rs);
+			JDBCUtil3.close(conn, stmt, pstmt, rs);
 		}
 		
-		return isExist;
-		
+		return isExist;	
 	}
 
 	public static void main(String[] args) {
 		T01MemberInfoTest memObj = new T01MemberInfoTest();
 		memObj.start();
 	}
-
 }
-
-
-
-
-
-
