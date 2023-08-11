@@ -37,7 +37,7 @@ public class T02LambdaTest {
 			  	(a) -> {System.out.println(a);} 				! int를 빼고 써도 된다는 의미 !
 		  
 		  	2) 매개변수가 1개일 경우에는 괄호'()'를 생략할 수 있다.
-		  		(단, '자료형이름'을 지정할 경우에는 괄호를 생략할 수 없다.) 		!int a 이렇게는 못 쓴다는 의미 !
+		  		(단, '자료형이름'을 지정할 경우에는 괄호를 생략할 수 없다.) 		! int a 이렇게는 못 쓴다는 의미 !
 		  		ex_) a -> {System.out.println(a);} 				1개!!!! 일 경우에만
 		  
 		  	3) '실행문'이 1개일 경우에는 '{}'를 생략할 수 있다.
@@ -45,7 +45,7 @@ public class T02LambdaTest {
 		  	ex_) a -> System.out.println(a) 					1개!! 일 경우에만
 		  
 		  	4) 매개변수가 하나도 없으면 괄호'()'를 생략할 수 없다.
-		  		ex_) () -> System.out.println("안녕") 			!매개변수가 없다는 의미로 () 꼭 써야해 !
+		  		ex_) () -> System.out.println("안녕") 			! 매개변수가 없다는 의미로 () 꼭 써야해 !
 		  
 		  	5) 반환값이 있을 경우에는 return문을 사용한다.
 		  		ex_) (a, b) -> {return a + b;}
@@ -99,7 +99,7 @@ public class T02LambdaTest {
 		System.out.println("k = " + k); 
 		
 ---------------------------------------------------------------------------------------------------*/
-		// 컨슈머 = 추상메소드가 1개인 인터페이스?
+		// 리턴타입이 없고, 매개변수가 한 개 인것 Consumer + accept
 		Consumer<Integer> lam3 =
 				(Integer z) -> {
 					int result = z + 100;
@@ -119,7 +119,7 @@ public class T02LambdaTest {
 		lam5.accept(90);
 
 		System.out.println("-----------------------------");
-		
+		// 제너릭 타입을 여러개 사용할 수 있음  BiFunction + apply
 		BiFunction<Integer, Integer, Integer> lam6 =
 				(Integer x, Integer y) -> {
 			int r = x + y;

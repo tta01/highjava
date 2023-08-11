@@ -5,14 +5,21 @@
 
 <configuration>
 
-	<environments default="dev">	
+<properties resource="db.properties"/>
+
+<typeAliases>
+	<typeAlias type="kr.or.ddit.member.vo.MemberVO" alias="mvo"/>
+</typeAliases>
+
+
+	<environments default="dev">
 		<environment id="dev">
 			<transactionManager type="JDBC" />
 			<dataSource type="POOLED">
-			<property name="driver" value="oracle.jdbc.driver.OracleDriver"/>
-			<property name="url" value="jdbc:oracle:thin:@localhost:1521:xe"/>
-			<property name="username" value="tta"/>
-			<property name="password" value="java"/>
+			<property name="driver" value="${driver}"/>
+			<property name="url" value="${url}"/>
+			<property name="username" value="${username}"/>
+			<property name="password" value="${password}"/>
 			
 			</dataSource>
 		</environment>

@@ -27,7 +27,7 @@ import kr.or.ddit.member.vo.MemberVO;
 		1. 자료 입력			---> insert
 		2. 자료 삭제			---> delete
 		3. 자료 수정			---> update
-		4. 전체 자료 출력	---> select
+		4. 전체 자료 출력			---> select
 		5. 작업 끝.
 	----------------------
 	 
@@ -44,8 +44,39 @@ create table mymember(
 
 4개의 인터페이스 => 알맞게 호출할 줄 알아야 함
 Connection
+	conn = JDBCUtil3.getConnection();
+	시작할 때 연결해주고 시작!! 내가 생성한 유틸을 겟 커넥션으로 가져와서 연결
+
 Statement & Prepared => connection이 있어야 리턴 받아 생성할 수 있음
+	pstmt = conn.prepareStatement(sql);
+	stmt = conn.Statement(sql);
+	
+	근데 얘네가 오면 내가 그 메소드안에서 불러와야 하는 쿼리문도
+	pstmt.setString(1, writer);
+	stmt.setString(1, writer);
+	이런 형식으로 가져와야해
+	
+	앞 번호는 순서 , 뒤는 쿼리문에서 불러올 자바식 이름
+	String sql ="Select * from jdbc_board where board_writer = ?";
+	여기에 들어가는 순서랑 맞기만 하면 되고, ? 갯수에 맞춰서 가져와야 해 이거 안 맞으면 sql오류남
+	
+	rs = pstmt.executeQuery();
+	rs = stmt.executeQuery();
+	불러온 쿼리문을 저장할 곳인데
+	쿼리문을 select로 불러왔으면 무조건 query
+	쿼리문을 select 이외의 것으로 불렀으면 update
+	
+	rs에 저장 후 출력하면되는데 보통 자료가 얼마나 입력되었는지 모르니까 while문으로 출력
+	while() 조건에 rs에서 가져오고, 다음이 있으면 가져와야 하니까 (rs.next()) 이렇게 넣어주기
+	
+	String content = rs.getString("board_content");
+	타입 가져올 이름 = rs.get타입("가져올 쿼리 테이블 명");
+	
+	다 가져왔으면 출력! 하고 예외처리 해주면 끝!!
+
 ResultSet -> executeQurey (select문)
+	rs.get타입("쿼리에서 가져올 테이블명");
+	
 crud - executeUpddate (나머지) 
 
 끝나면 반드시 close(); !! try&catch문 finally에 넣어줌

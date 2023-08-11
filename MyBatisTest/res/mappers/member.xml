@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="memberTest">
+<mapper namespace="member">
 
 <!-- 
 	이 영역에 sql문에 맞는 태그를 사용하여 SQL문을 기술한다. / dao역할!
@@ -24,7 +24,7 @@
 	 					적절한 매필을 위해 사용한다.				
  -->
 
-<insert id="insertMember" parameterType="kr.or.ddit.member.vo.MemberVO">
+<insert id="insertMember" parameterType="mvo">
 <!-- 멤버다오임플에서 가져옴 / ? 대신에 #{} 집어 넣어줌 -->
 INSERT INTO mymember (
 	mem_id, 	 
@@ -36,7 +36,7 @@ INSERT INTO mymember (
 
 </insert>
 
-<update id="updateMember" parameterType="kr.or.ddit.member.vo.MemberVO">
+<update id="updateMember" parameterType="mvo">
 
 	update mymember
 	set mem_name = #{memName},
@@ -46,5 +46,75 @@ INSERT INTO mymember (
 	
 </update>
 
+<delete id="deleteMember" parameterType="String"> 
+	
+	delete from mymember
+	where mem_id = #{공백만 아니면 됨}
+	
+</delete>
+
+<select id="selectAll" resultType="mvo">
+								<!-- select에서는 result를 꼭 써줘야 함 -->
+
+	select mem_id as memId,
+			mem_name as memName,
+			mem_tel as memTel,
+			mem_addr as memAddr,
+			reg_dt as regDt
+	 from mymember
+	
+	<!-- 쿼리문 & 자바 속성명이 같아야 함. 구분이 되어야 얘가 인식함 -->
+	
+
+</select>
+
+<select id="getMember" resultType="mvo">
+
+	select mem_id as memId,
+			mem_name as memName,
+			mem_tel as memTel,
+			mem_addr as memAddr,
+			reg_dt as regDt
+	 from mymember
+	 where mem_id = #{아무거나써봐}
+
+</select>
+
+<select id="checkMember" parameterType="String" resultType="int">
+
+	select count(*) as cnt
+	from mymember where mem_id = #{memId}
+
+</select>
+
+<resultMap type="kr.or.ddit.member.vo.MemberVO" id="mm">
+	<result column="mem_id" property="memId"/>
+	<result column="mem_name" property="memName"/>
+	<result column="mem_tel" property="memTel"/>
+	<result column="mem_addr" property="memAddr"/>
+	<result column="reg_dt" property="regDt"/>
+</resultMap>
+
+<select id="searchMember" resultMap="mm">
+
+	select *
+	from mymember
+	where 1=1
+	
+	<if test='memId != null and memId !=""'>
+		and mem_id =#{memId}
+	</if>
+	<if test='memName != null and memName !=""'>
+		and mem_name =#{memName}
+	</if>
+	<if test='memTel != null and memTel !=""'>
+		and mem_tel =#{memTel}
+	</if>
+	<if test='memAddr != null and memAddr !=""'>
+		and mem_addr like '%' || #{memAddr} || '%'
+	</if>
+
+
+</select>
 
 </mapper>

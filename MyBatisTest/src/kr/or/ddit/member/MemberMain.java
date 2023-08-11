@@ -66,7 +66,7 @@ public class MemberMain {
 	/**
 	 * 메뉴를 출력하는 메서드
 	 */
-	public void displayMenu(){
+	public void displayMenu(){ // 여기서는 뷰!! 
 		System.out.println();
 		System.out.println("----------------------");
 		System.out.println("  === 작 업 선 택 ===");
@@ -76,7 +76,7 @@ public class MemberMain {
 		System.out.println("  4. 전체 자료 출력");
 		System.out.println("  5. 자료 검색");
 		System.out.println("  6. 작업 끝.");
-		System.out.println("----------------------");
+		System.out.println("----------------------"); 
 		System.out.print("원하는 작업 선택 >> ");
 	}
 	
@@ -181,7 +181,6 @@ public class MemberMain {
 		if(memList.size() == 0 ) { // 
 			System.out.println("회원정보가 존재하지 않습니다.");
 		} else {
-			
 			for (MemberVO mv : memList) {
 				
 				System.out.println(mv.getMemId()+ "\t" + mv.getRegDtDisplay() + "\t"

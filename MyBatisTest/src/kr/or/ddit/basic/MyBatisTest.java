@@ -3,6 +3,7 @@ package kr.or.ddit.basic;
 import java.io.IOException;
 import java.io.Reader;
 import java.nio.charset.Charset;
+import java.util.List;
 
 import org.apache.ibatis.exceptions.PersistenceException;
 import org.apache.ibatis.io.Resources;
@@ -100,9 +101,79 @@ public class MyBatisTest {
 		}finally {
 			sqlSession.close();
 		}
+		System.out.println("---------------------------------------");
 		
+		// 2-3. delete 연습
+/*		System.out.println("delete 작업 시작");
 		
+		sqlSession = sessionFactory.openSession(); // 오토커밋을 할꺼냐?
 		
+		try {
+			
+			int cnt = sqlSession.delete("memberTest.deleteMember","a004");
+			
+			if(cnt > 0) {
+				System.out.println("delete 작업 성공");
+				sqlSession.commit();
+			} else {
+				System.out.println("delete 작업 실패");
+			}
+			
+		} catch (PersistenceException ex) {
+			ex.printStackTrace();
+			sqlSession.rollback();
+		} finally {
+			sqlSession.close();
+		}
+		*/
+		System.out.println("-------------------------------------");
+		
+		// 2-4. select 연습
+		// 1) 응답의 결과가 여러 개인 경우 - list
+		System.out.println("select 연습(결과가 여러 개일 경우)시작");
+		
+		sqlSession = sessionFactory.openSession(true);
+		
+		try {
+			
+			List<MemberVO> memList = sqlSession.selectList("memberTest.selectAll"); 
+			
+			for(MemberVO mv3 : memList) {
+				System.out.println("회원ID : " + mv3.getMemId());
+				System.out.println("회원이름 : " + mv3.getMemName());
+				System.out.println("회원전화 : " + mv3.getMemTel());
+				System.out.println("회원주소 : " + mv3.getMemAddr());
+				System.out.println("----------------------------");
+			}
+			
+			System.out.println("목록 출력 끝");
+					
+		} catch (PersistenceException ex) {
+			ex.printStackTrace();
+		} finally {
+			sqlSession.close();
+		}
+		
+		// 2) 응답의 결과가 1개일 경우 - object
+		System.out.println("select 연습 (결과가 1개일 경우)시작");
+		
+		sqlSession = sessionFactory.openSession(true);
+		
+		try {
+			//응답 결과가 1개가 확실할 경우에는 selectOne() 메서드 사용
+			MemberVO mv4 = sqlSession.selectOne("memberTest.getMember","d002");
+			
+			System.out.println("회원ID : " + mv4.getMemId());
+			System.out.println("회원이름 : " + mv4.getMemName());
+			System.out.println("회원전화 : " + mv4.getMemTel());
+			System.out.println("회원주소 : " + mv4.getMemAddr());
+			System.out.println("----------------------------");
+			
+		} catch (PersistenceException ex) {
+			ex.printStackTrace();
+		} finally {
+			sqlSession.close();
+		}
 		
 	}
 }

@@ -4,14 +4,17 @@ import java.util.List;
 
 import kr.or.ddit.member.dao.IMemberDao;
 import kr.or.ddit.member.dao.MemberDaoImpl;
+import kr.or.ddit.member.dao.MemberDaoImplWithJDBC;
 import kr.or.ddit.member.vo.MemberVO;
 
 public class MemberServiceImpl implements IMemberService {
 
 	private IMemberDao memDao;
-	
+//	
+//	private static IMemberService memService;
+//	
 	public MemberServiceImpl() {
-		memDao = new MemberDaoImpl();
+		memDao = MemberDaoImpl.getInstance();
 	}
 
 	@Override
@@ -59,7 +62,6 @@ public class MemberServiceImpl implements IMemberService {
 	public List<MemberVO> selectAll() {
 		
 		List<MemberVO> memList = memDao.selectAll();
-		
 		return memList;
 	}
 

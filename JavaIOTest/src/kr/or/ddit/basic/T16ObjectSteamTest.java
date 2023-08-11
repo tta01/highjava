@@ -1,5 +1,7 @@
 package kr.or.ddit.basic;
 
+import java.io.BufferedInputStream;
+import java.io.BufferedOutputStream;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -23,7 +25,7 @@ public class T16ObjectSteamTest {
 		
 		try {
 			// 기본스트림은 앞에 file 붙은거!! 외워!!
-			oos = new ObjectOutputStream(new FileOutputStream("e:/D_Other/memObj.bin"));
+			oos = new ObjectOutputStream(new BufferedOutputStream(new FileOutputStream("e:/D_Other/memObj.bin")));
 			
 			
 			// 쓰기 작업
@@ -46,15 +48,13 @@ public class T16ObjectSteamTest {
 		}
 		///////////////////////////////////////////////////////////////////
 		
-		
-			
-		
+
 		ObjectInputStream ois = null;
 		
 		try {
 			
 			
-			ois = new ObjectInputStream(new FileInputStream("e:/D_Other/memObj.bin"));
+			ois = new ObjectInputStream(new BufferedInputStream(new FileInputStream("e:/D_Other/memObj.bin")));
 			
 			Object obj = null;
 			

@@ -1,7 +1,6 @@
 package kr.or.ddit.member.service;
 
 import java.util.List;
-
 import kr.or.ddit.member.vo.MemberVO;
 
 /**
@@ -42,5 +41,6 @@ public interface IMemberService {
 	 * @return 전체 회원정보를 담은 리스트
 	 */
 	public List<MemberVO> selectAll();
+	
 	
 }

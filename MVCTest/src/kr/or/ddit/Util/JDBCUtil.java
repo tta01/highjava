@@ -18,6 +18,7 @@ public class JDBCUtil {
 			e.printStackTrace();
 		}
 	}
+	
 	/**
 	 * 커넥션 객체 가져오기
 	 * @return Connection 객체, 예외 발생시 null 리턴함.
@@ -33,6 +34,7 @@ public class JDBCUtil {
 			return null;
 		}
 	}
+	
 	/**
 	 * 자원반납
 	 * @param conn
