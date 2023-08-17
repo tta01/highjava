@@ -41,7 +41,7 @@ public class BoardServiceImpl implements IBoardService {
 	}
 
 	@Override
-	public int deleteText(Long boardNo) {
+	public int deleteText(long boardNo) {
 		
 		int cnt = brdDao.deleteText(boardNo);
 		
@@ -49,11 +49,11 @@ public class BoardServiceImpl implements IBoardService {
 	}
 
 	@Override
-	public boolean searchText(Long boardNo) {
+	public List<BoardVO> searchText(BoardVO paramBv) {
 		
-		boolean cnt = brdDao.searchText(boardNo);
+		List<BoardVO> brdList = brdDao.searchText(paramBv);
 		
-		return false;
+		return brdList;
 	}
 
 	@Override
@@ -65,8 +65,10 @@ public class BoardServiceImpl implements IBoardService {
 	}
 
 	@Override
-	public boolean checkInfo(Long boardNo) {
-		// TODO Auto-generated method stub
-		return false;
+	public boolean checkInfo(long boardNo) {
+		
+		boolean isExit = brdDao.checkInfo();
+		
+		return isExit;
 	}
 }

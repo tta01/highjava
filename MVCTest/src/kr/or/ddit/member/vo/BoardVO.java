@@ -5,7 +5,7 @@ import java.util.Date;
 
 public class BoardVO {
 	
-	private Long boardNo;
+	private long boardNo;
 	private String title;
 	private String writer;
 	private Date date;
@@ -13,7 +13,7 @@ public class BoardVO {
 	
 //	private Date regDt;
 	
-	public BoardVO(Long boardNo,String title, String writer, Date date, String content) {
+	public BoardVO(long boardNo,String title, String writer, Date date, String content) {
 		super();
 		this.boardNo=boardNo;
 		this.title = title;
@@ -26,7 +26,7 @@ public class BoardVO {
 		
 	}
 
-	public Long getBoardNo() {
+	public long getBoardNo() {
 		return boardNo;
 	}
 

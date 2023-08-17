@@ -10,10 +10,15 @@ public interface IBoardDao {
 	
 	public int updataText(BoardVO bv);
 	
-	public int deleteText(Long boardNo);
+	public int deleteText(long boardNo);
 	
-	public boolean searchText(Long boardNo);
+	public List<BoardVO> searchText(BoardVO paramBv);
+	
+	public boolean checkInfo();
 	
 	public List<BoardVO> selectAll();
+
+	boolean checkInfo(long boardNo);
+
 	
 }

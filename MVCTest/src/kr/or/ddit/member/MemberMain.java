@@ -167,14 +167,12 @@ public class MemberMain {
 			System.out.println("출력 작업 끝");
 		
 		}
-		
-		
 
 	}
 	private	void deleteMember() { // View 부분
 		
 		System.out.println();
-		System.out.println("수정할 회원 정보를 입력해 주세요.");
+		System.out.println("삭제할 회원 정보를 입력해 주세요.");
 		System.out.println("회원 ID >>");
 		
 		String memId = scan.next();

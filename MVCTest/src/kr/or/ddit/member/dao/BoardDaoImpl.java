@@ -18,6 +18,7 @@ public class BoardDaoImpl implements IBoardDao {
 	private Statement stmt;
 	private PreparedStatement pstmt;
 	private ResultSet rs;
+//	private long boardNo;
 	
 	//싱글톤패턴
 	private static IBoardDao brdDao;
@@ -53,7 +54,7 @@ public class BoardDaoImpl implements IBoardDao {
 					 + ") VALUES(mvc_seq.nextval, ?, ?, sysdate, ?)";
 			
 			pstmt = conn.prepareStatement(sql);
-//			pstmt.setLong(1, bv.getBoardNo());
+			pstmt.setLong(1, bv.getBoardNo());
 			pstmt.setString(1, bv.getTitle());
 			pstmt.setString(2, bv.getWriter());
 			pstmt.setString(3, bv.getContent());
@@ -97,7 +98,7 @@ public class BoardDaoImpl implements IBoardDao {
 	}
 
 	@Override
-	public int deleteText(Long boardNo) {
+	public int deleteText(long boardNo) {
 		
 		int cnt = 0;
 		
@@ -122,7 +123,37 @@ public class BoardDaoImpl implements IBoardDao {
 	}
 	
 	@Override
-	public boolean searchText(Long boardNo) {
+	public List<BoardVO> searchText(BoardVO paramBv) {
+		List<BoardVO> brdList = new ArrayList<>();
+		
+		try {
+			
+			String sql = "select * from mvc_board where 1=1 ";
+			conn = JDBCUtil3.getConnection();
+			
+			// 값이 null & 빈 값도 아닐 때
+			if(paramBv.getBoardNo() != null && !paramBv.getBoardNo().equals("")) {
+				sql += "and borad_no = ?"
+			}
+			if(paramBv.getTitle() != null && !paramBv.getTitle().equals("")) {
+	            sql += " and board_title = ? ";
+	         }
+			if(paramBv.getWriter() != null && !paramBv.getWriter().equals("")) {
+				sql += " and board_writer = ? ";
+			}
+			if(paramBv.getContent() != null && !paramBv.getContent().equals("")) {
+				sql += " and board_content = ? ";
+			}
+			
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		return brdList;
+		
+	}
+
+	@Override
+	public boolean checkInfo(long boardNo) {
 		
 		boolean isExist = false;
 		
@@ -130,8 +161,7 @@ public class BoardDaoImpl implements IBoardDao {
 			
 			conn = JDBCUtil3.getConnection();
 			
-			String sql ="Select * from mvc_board where board_no = ? ";
-
+			String sql = "select count(*) as cnt from mvc_board where board_no=?";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setLong(1, boardNo);
 			
@@ -154,8 +184,9 @@ public class BoardDaoImpl implements IBoardDao {
 		}
 		
 		return isExist;	
+		
 	}
-
+	
 	@Override
 	public List<BoardVO> selectAll() {
 		
@@ -192,5 +223,15 @@ public class BoardDaoImpl implements IBoardDao {
 		}
 		
 		return brdList;
+	}
+
+	@Override
+	public boolean checkInfo() {
+		
+		boolean isExist = false;
+		
+		
+		
+		return false;
 	}
 }
