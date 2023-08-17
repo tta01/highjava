@@ -13,6 +13,8 @@ public interface IBoardService {
 	
 	public boolean searchText(Long boardNo);
 	
+	public boolean checkInfo(Long boardNo);
+	
 	public List<BoardVO> selectAll();
 	
 
