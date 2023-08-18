@@ -23,7 +23,7 @@ public class UdpFileSender {
 			this.port = port;
 			
 			receiveAddr = InetAddress.getByName(receiverIp);
-			file = new File("e:D_Other/aaa.jpg");
+			file = new File("e:D_Other/3.jpg");
 			
 			if(!file.exists()) {
 				System.out.println("해당파일이 존재하지 않습니다.");
@@ -44,7 +44,7 @@ public class UdpFileSender {
 		long startTime = System.currentTimeMillis();
 		
 		try {
-			//전송 시작을 알려주기 위한 문자열 전송
+			//전송 시작을 알려주기 위한 문자열 전송 / receive가 기다림 => start를 보내주면 시작한다는 것으로 인식(?)함
 			sendData("start".getBytes()); 
 			
 			// 파일명 전송
@@ -114,7 +114,7 @@ public class UdpFileSender {
 		
 	}
 	public static void main(String[] args) {
-		new UdpFileSender("192.168.145.41", 8888).start();
+		new UdpFileSender("192.168.145.8", 8888).start();
 	}
 
 }

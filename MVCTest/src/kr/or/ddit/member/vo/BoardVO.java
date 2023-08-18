@@ -22,6 +22,12 @@ public class BoardVO {
 		this.content = content;
 	}
 	
+	public BoardVO(String title, String writer, String content) {
+		this.title = title;
+		this.writer = writer;
+		this.content = content;
+	}
+	
 	public BoardVO() {
 		
 	}
@@ -30,7 +36,7 @@ public class BoardVO {
 		return boardNo;
 	}
 
-	public void setBoardNo(Long boardNo) {
+	public void setBoardNo(long boardNo) {
 		this.boardNo = boardNo;
 	}
 

@@ -14,7 +14,7 @@ public class TcpSocketServerTest {
 		
 		// TCP 소켓 통신을 위한 ServerSocket객체 생성하기
 		ServerSocket server = new ServerSocket(7777);
-		System.out.println(" 서버가 접속을 기다립ㄴㅣ다.");
+		System.out.println(" 서버가 접속을 기다립ㄴㅣ다!");
 		
 		// accept() 메서드는 클라이언트에서 연결요청이 올 때까지 계속 기다린다.
 		// 연결 요청이 오면 Socket객체를 생성해서 Client의 Socket과 연결한다.

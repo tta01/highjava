@@ -12,13 +12,12 @@ public interface IBoardDao {
 	
 	public int deleteText(long boardNo);
 	
-	public List<BoardVO> searchText(BoardVO paramBv);
+	public List<BoardVO> searchText(BoardVO bv);
 	
-	public boolean checkInfo();
+	public boolean checkInfo(long boardNo);
 	
 	public List<BoardVO> selectAll();
 
-	boolean checkInfo(long boardNo);
 
 	
 }

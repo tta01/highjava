@@ -34,9 +34,7 @@ public class BoardServiceImpl implements IBoardService {
 
 	@Override
 	public int modifyText(BoardVO bv) {
-		
 		int cnt = brdDao.updataText(bv);
-		
 		return cnt;
 	}
 
@@ -47,11 +45,11 @@ public class BoardServiceImpl implements IBoardService {
 		
 		return cnt;
 	}
-
+ 
 	@Override
-	public List<BoardVO> searchText(BoardVO paramBv) {
+	public List<BoardVO> searchText(BoardVO bv) {
 		
-		List<BoardVO> brdList = brdDao.searchText(paramBv);
+		List<BoardVO> brdList = brdDao.searchText(bv);
 		
 		return brdList;
 	}
@@ -67,7 +65,7 @@ public class BoardServiceImpl implements IBoardService {
 	@Override
 	public boolean checkInfo(long boardNo) {
 		
-		boolean isExit = brdDao.checkInfo();
+		boolean isExit = brdDao.checkInfo(boardNo);
 		
 		return isExit;
 	}

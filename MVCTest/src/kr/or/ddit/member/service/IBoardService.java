@@ -12,7 +12,7 @@ public interface IBoardService {
 	
 	public int deleteText(long boardNo);
 	
-	public List<BoardVO> searchText(BoardVO paramBv);
+	public List<BoardVO> searchText(BoardVO bv);
 	
 	public boolean checkInfo(long boardNo);
 	
