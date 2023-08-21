@@ -192,10 +192,8 @@ public class MemberMain {
 			System.out.println("출력 작업 끝");
 		
 		}
-		
-		
-
 	}
+	
 	private	void deleteMember() { // View 부분
 		
 		System.out.println();
@@ -259,7 +257,6 @@ public class MemberMain {
 			System.out.println(memId + "회원의 정보를 수정 실패!!");
 		}
 	}
-	
 	
 	/**
 	 * 회원정보를 등록하기 위한 메서드

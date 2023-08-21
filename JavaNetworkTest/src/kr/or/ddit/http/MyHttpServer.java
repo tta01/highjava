@@ -52,6 +52,7 @@ public class MyHttpServer {
 
 	/**
 	 * HTTP 요청 처리를 위한 스레드
+	 * post / get 방식으로 요청 / 경로 설정 http/1.1 - 버전 
 	 */
 	class HttpHandler extends Thread {
 

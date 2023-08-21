@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+
+<style>
+table{
+	border : 5px solid blue; /* border를 없애면 선이 없어짐 */
+	
+	margin : 50px;
+}
+
+td{
+	width : 200px;
+	height : 50px;
+	
+	text-align : center;
+}
+th{
+	height : 60px;
+	background : black;
+	color : white;
+	font-size : 1.5em;
+	border-bottom-color: red;
+}
+#tab1{
+	border-collapse: collapse; /* separate; */
+}
+#tab2{
+	border-spacing: 10px;
+}
+caption {
+/*	border : 1px solid gold;	*/
+	font-size : 1.3em;
+/*	caption-side: bottom; */
+	margin : 20px;
+}
+</style>
+</head>
+<body>
+
+<table border="1" id="tab1">
+
+	<caption>VIP 고객리스트</caption>
+	<tr>
+		<th>이름</th>
+		<th>주소</th>
+		<th>전화번호</th>
+	</tr>
+	
+	<tr>
+		<td>1</td>
+		<td>2</td>
+		<td>3</td>
+	</tr>
+	
+	<tr>
+		<td>1</td>
+		<td>2</td>
+		<td>3</td>
+	</tr>
+	
+	<tr>
+		<td>1</td>
+		<td>2</td>
+		<td>3</td>
+	</tr>
+</table>
+<br>
+<table border="1" id="tab2">
+
+	<caption>블랙리스트</caption>
+	<tr>
+		<th>이름</th>
+		<th>주소</th>
+		<th>전화번호</th>
+	</tr>
+	
+	<tr>
+		<td>1</td>
+		<td>2</td>
+		<td>3</td>
+	</tr>
+	
+	<tr>
+		<td>1</td>
+		<td>2</td>
+		<td>3</td>
+	</tr>
+	
+	<tr>
+		<td>1</td>
+		<td>2</td>
+		<td>3</td>
+	</tr>
+</table>
+
+
+</body>
+</html>

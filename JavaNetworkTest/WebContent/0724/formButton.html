@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+ <link rel="shortcut icon" href="../images/check.png"> <!-- 제목 옆 아이콘 바꾸는 법 -->
+
+
+<style>
+span{
+	display : inline-block;
+	width : 100px;
+	height : 30px;
+	
+}
+</style>
+
+<script type="text/javascript">
+//사용자 함수 정의
+// function cala() {}
+// calc = function(){}
+// calc = () => {  }  -> 표준 number es6
+
+function calc(){ 
+	/*
+	//id=price요소 검색  / let은 똑같은 이름을 두 번 실행할 수 없음
+//	let vprice = document.getElementById('price');
+	let vprice = document.querySelector('#price');
+		
+	// id=qty요소 검색 / var는 이름이 같아도 상관 없음
+	var vqty = document.getElementById('qty');
+	var vqty = document.querySelector('#qty');
+	
+	//검색요소에서 값 가져오기 String 값으로 리턴한다	 / let 여기는 다른 변수라 둘 다 동시에 실행 가능
+	let priceValue = vprice.value;
+	let qtyValue = vqty.value;
+	*/
+	
+	// 첫 번째, 세 번째 합쳐서 한 줄로 씀
+	let priceValue = document.getElementById('price').value
+	let qtyValue = document.getElementById('qty').value
+	
+	//가져온 값으로 계산
+	let res = priceValue * qtyValue;
+
+	//계산된 결과 값을 출력
+	alert("결과값 : " + res);
+	
+}
+
+</script>
+
+</head>
+<body>
+<!-- html주석 실행되지는 않지만 소스보기하면 보임 -->
+<pre>
+type = button인 요소는 기능이 없다.
+기능을 부여하기 위해서는 javascript가 필요하다.
+</pre>
+
+<form name="input" action="getid.jsp" method="get">
+
+   <span>물품가격 :</span> 
+    <input type="number" id="price" min="10000" max="100000" step="100" name="user"><br>
+   
+   <span>수량:</span> 
+    <input type="number" id="qty" name="su"><br>
+    
+    <!-- <input type="button" value="계산" onclick="alert('hello 10000원 입니다.')"> -->
+    <input type="button" value="계산" onclick="calc()"> <!-- 함수 호출  / value값이 없으면 빈 버튼만 출력됨-->
+    
+</form>
+
+
+
+
+
+</body>
+</html>

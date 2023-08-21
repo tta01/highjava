@@ -34,16 +34,6 @@ public class JDBCUtil3 {
 		}
 	}
 	
-	static {
-		try {
-
-			// 드라이버 로딩 확인
-			Class.forName("oracle.jdbc.driver.OracleDriver");
-			System.out.println("드라이버 로딩 완료!");
-		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
-		}
-	}
 	/**
 	 * 커넥션 객체 가져오기
 	 * @return Connection 객체, 예외 발생시 null 리턴함.

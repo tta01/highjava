@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+
+<style>
+form { 
+	border : 1px dotted blue;
+	width : 70%;
+	padding : 20px;
+	margin : 30px auto;
+}
+
+label { /* 인라인 요소라서 넓이와 높이를 작성해도 설정이 불가함 */
+	display : inline-block;
+	width : 100px;
+	height : 30px; 
+}
+</style>
+</head>
+<pre>
+인라인요소 - 
+display : inline ;
+label, span, input
+	가로, 세로 크기 설정 불가
+블럭요소
+display : inline ; 
+
+인라인-block요소 : 줄이 바뀌지 않는 인라인 요소의 속성과 크기 조절이 가능한 block요소의 속성을 가짐
+display : inline-block;
+
+안 보이도록 설정 : display : none;
+
+</pre>
+<body>
+
+<form action = "test2.jsp" method ="post">
+	<label for = "aa">아이디</label>
+	<input type = "text" name="id" id = "aa" value="korea"><br> 
+	
+	<label for = "bb">이름</label>
+	<input type = "text" id = "bb" name="name"><br>
+	
+	<label for = "">주소</label>
+	<input type ="text" name="addr"><br>
+	
+	<label for = "">전화번호</label>
+	<input type ="text" name="tel"><br>
+	
+	<label for = "">첨부파일</label>
+	<input type ="file" name="file"><br>
+	
+	<input type="hidden" name="age" value="20"><br>
+	<input type="submit"> 
+	<input type="reset">
+	
+
+</form>
+</body>
+</html>

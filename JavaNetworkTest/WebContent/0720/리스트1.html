@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style>
+ul,li {
+	border : 1px solid blue;
+	margin : 5px;
+}
+
+#circle {
+	list-style-type: circle;
+}
+#square{
+	list-style-type:square;
+	list-style-position: inside;
+}
+#uimg{
+	list-style-image: url(../images/check.png);
+}
+
+#lstyle{
+	/* list-style : type position image */
+	list-style : circle inside url(../images/check.png);
+	
+}
+
+</style>
+</head>
+
+<body>
+<h3>list-style-type : disk</h3>
+<ul>
+	<li>HTML</li>
+	<li>CSS</li>
+	<li>JavaScript</li>
+	<li>jQurery</li>
+	<li>ajax</li>
+</ul>
+<h3>list-style-type : disk</h3>
+<ul id="circle">
+	<li>HTML</li>
+	<li>CSS</li>
+	<li>JavaScript</li>
+	<li>jQurery</li>
+	<li>ajax</li>
+</ul>
+
+<h3>list-style-type : disk</h3>
+<ul id="square">
+	<li>HTML</li>
+	<li>CSS</li>
+	<li>JavaScript</li>
+	<li>jQurery</li>
+	<li>ajax</li>
+</ul>
+<h3>list-style-image : url()</h3>
+<ul id="uimg">
+	<li>HTML</li>
+	<li>CSS</li>
+	<li>JavaScript</li>
+	<li>jQurery</li>
+	<li>ajax</li>
+</ul>
+</ul>
+<h3>list-style : circle inside url(../images/check.png); </h3>
+<ul id="lstyle">
+	<li>HTML</li>
+	<li>CSS</li>
+	<li>JavaScript</li>
+	<li>jQurery</li>
+	<li>ajax</li>
+</ul>
+</body>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+
+<style>
+label {
+	display : inline-block;
+	width : 100px;
+	height : 30px;
+}
+textarea {
+	vertical-align: top;
+}
+
+</style>
+</head>
+<body>
+
+<form action = "여러줄.jsp" method = "post">
+
+	<label>이름</label>
+	<input type = "text" name="name"><br>
+	
+	<label>아이디</label>
+	<input type = "text" name="id"><br>
+	
+	<label>소개</label>
+	<textarea rows="5" cols="50" name="area"></textarea> <br>
+	
+	<br>
+	<button>전송</button>
+	<button type ="reset">초기화</button>
+	
+</form>
+</body>
+</html>

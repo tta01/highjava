@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+
+<style>
+select{
+	vertical-align: top;
+}
+
+label {
+	display : inline-block;
+	height : 30px;
+}
+
+.lab1 {
+	width : 80px;
+}
+
+.lab2{
+	width : 150px;
+}
+
+</style>
+</head>
+<body>
+
+<form action = "셀렉트옵션.jsp" method="post">
+
+	<label class="lab1">이름</label>
+	<input name = "name"><br>
+	
+	<label class="lab1">아이디</label>
+	<input name = "id"><br><br>
+	
+	<label class="lab2">자동차 한개선택</label>
+	<select name = "car">
+		<option>BMW</option>
+		<option>Benz</option>
+		<option selected>현대자동차</option>
+		<option>기아자동차</option>
+	</select>
+	<br>
+		<label class="lab2">자동차 여러개선택</label><br>
+		<label class="lab2">-multipe, size</label>
+	<select name = "cars" multiple="multiple" size="6">
+		<option>BMW</option>
+		<option>Benz</option>
+		<option selected>현대자동차</option>
+		<option>기아자동차</option>
+		<option>쌍용자동차</option>
+		<option>르노자동차</option>
+		
+	</select>
+	
+ <br>
+ <br>	
+
+ <button>전송</button>
+ <button type = "reset">취소</button>
+ 
+</form>
+
+</body>
+</html>
