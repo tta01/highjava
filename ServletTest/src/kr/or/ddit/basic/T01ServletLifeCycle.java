@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * 서블릿 라이프사이클을 확인하기
  * (서블릿이란? 컨테이너(서블릿엔진)에 의해 관리되는 자바기반 웹 컴포넌트로서, 
- * 동적인 웹 컨텐츠 생성을 가능하게 해준다.)
+ * 동적인 웹 컨텐츠 생성을 가능하게 해준다. 서블릿 스팩(API)에 맞춰서 구현하는 것)
  */
 public class T01ServletLifeCycle extends HttpServlet {
 	public T01ServletLifeCycle() {
@@ -26,9 +26,7 @@ public class T01ServletLifeCycle extends HttpServlet {
 	@Override
 	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		// 실제 작업이 시작되는 시점 (자바의 메인메서드 역할)
-		
 		System.out.println("service() 메서드 호출됨");
-		
 		super.service(req, resp);
 	}
 	

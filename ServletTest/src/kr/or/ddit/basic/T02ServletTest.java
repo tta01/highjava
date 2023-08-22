@@ -19,7 +19,7 @@ public class T02ServletTest extends HttpServlet {
 	   (HttpServletRequset 및 HttpServletResponse 객체를 넘겨준다)
 	4. service() 메서드는 메서드 타입을 체크하여 적절한 메서드를 호출한다. - 보통 doGet, doPost
 	   (doGet, doPost, doPut, doDelete 등)
-	5. 요청처리가 완료되면 HttpServletRequest 및 HttpServletResponse객체는 소멸된다.
+	5. 요청처리가 완료되면 HttpServletRequest 및 HttpServletResponse객체는 소멸된다. => 다시 부르면 새로운(다른) 객체!!
 	6. 컨테이너로부터 서블릿이 제거되는 경우에 destory() 메서드가 호출된다.
 */
 	
@@ -27,6 +27,7 @@ public class T02ServletTest extends HttpServlet {
 	
 	HttpServletRequest, HttpServletResponse 요청에 대한 응답을 보내면 사라지고,
 	새로운 요청을 보내서 응답을 보내게 되면 이건 다른 객체가 되는 것 
+	
 	HttpServletResponse를 작성해줘야 브라우저에도 뭐가 뜸! 안 쓰면 안 떠 */
  
 	@Override
@@ -43,9 +44,7 @@ public class T02ServletTest extends HttpServlet {
 		System.out.println("getRemotePort() : " + req.getRemotePort());
 		
 		// 요청 메시지로부터 name값을 가져오기 - getParameter
-		
 		String name = req.getParameter("name");
-		
 		System.out.println("name => " + name);
 		
 		// 요청객체에 정보 저장하기 - setAttribute
@@ -59,13 +58,13 @@ public class T02ServletTest extends HttpServlet {
 		//////////////////////////////////////////////////////////////
 		
 		resp.setCharacterEncoding("UTF-8");
-		resp.setContentType("text/plain");
+		resp.setContentType("text/plain"); // plain 읽을 수 있는 자료의 문자열만 나타냄
 		
 		PrintWriter out = resp.getWriter();
 		
 		out.println("name => " + name);
 		out.println("서블릿 경로 = > " + req.getServletPath());
-		out.println("서블릿 컨택스트 경로 = > " + req.getContextPath());
+		out.println("서블릿 컨택스트 경로 = > " + req.getContextPath()); // 구분해주기 위해서 사용함. 이름 역할
 		
 	}
 	
