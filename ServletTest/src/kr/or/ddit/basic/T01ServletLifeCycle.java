@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
  * 서블릿 라이프사이클을 확인하기
  * (서블릿이란? 컨테이너(서블릿엔진)에 의해 관리되는 자바기반 웹 컴포넌트로서, 
  * 동적인 웹 컨텐츠 생성을 가능하게 해준다. 서블릿 스팩(API)에 맞춰서 구현하는 것)
+ * API -> 외부 프로그램을 가져와서 사용하는 것
  */
 public class T01ServletLifeCycle extends HttpServlet {
 	public T01ServletLifeCycle() {
@@ -27,13 +28,16 @@ public class T01ServletLifeCycle extends HttpServlet {
 	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		// 실제 작업이 시작되는 시점 (자바의 메인메서드 역할)
 		System.out.println("service() 메서드 호출됨");
-		super.service(req, resp);
+		super.service(req, resp); // 부모의 service가 호출된 것
 	}
 	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		// 메서드 방식이 GET인 경우 호출됨
 		System.out.println("doGet() 메서드 호출됨");
+		
+		throw new ServletException("서블릿에서 엄청 큰 예외가 발생해써!!");
+		
 	}
 	
 	@Override

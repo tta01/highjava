@@ -28,6 +28,7 @@ public class T04ErrorHandler extends HttpServlet {
 		if(servletName == null) {
 			servletName = "알 수 없는 서블릿 이름";
 		}
+		
 		// 에러발생 URI 정보
 		String reqUri = (String) req.getAttribute("javax.servlet.error.request_uri");
 		
