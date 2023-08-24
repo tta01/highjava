@@ -5,6 +5,7 @@
 	<servlet>
 		<servlet-name>T01ServletLifeCycle</servlet-name>
 		<servlet-class>kr.or.ddit.basic.T01ServletLifeCycle</servlet-class>
+		<load-on-startup>1</load-on-startup>
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>T01ServletLifeCycle</servlet-name>
@@ -38,10 +39,6 @@
 		<url-pattern>/T04ErrorHandler</url-pattern>
 	</servlet-mapping>
 	
-	<error-page>
-		<exception-type>javax.servlet.ServletException</exception-type>
-		<location>/T04ErrorHandler</location>
-	</error-page>
 	
 	<servlet>
 		<servlet-name>T05ServletCookieTest</servlet-name>
@@ -61,9 +58,91 @@
 		<url-pattern>/T06ServletSessionTest</url-pattern>
 	</servlet-mapping>	
 
+	
+	<servlet>
+		<servlet-name>T07ServletContextTest</servlet-name>
+		<servlet-class>kr.or.ddit.basic.T07ServletContextTest</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>T07ServletContextTest</servlet-name>
+		<url-pattern>/T07ServletContextTest</url-pattern>
+	</servlet-mapping>	
+	
+	<servlet>
+		<servlet-name>T09ServletRequestListenerTest</servlet-name>
+		<servlet-class>kr.or.ddit.basic.T09ServletRequestListenerTest</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>T09ServletRequestListenerTest</servlet-name>
+		<url-pattern>/T09ServletRequestListenerTest</url-pattern>
+	</servlet-mapping>	
+	
+	<servlet>
+		<servlet-name>T10SessionListenerTest</servlet-name>
+		<servlet-class>kr.or.ddit.basic.T10SessionListenerTest</servlet-class>
+	</servlet>
+	<servlet-mapping> 
+		<servlet-name>T10SessionListenerTest</servlet-name>
+		<url-pattern>/T10SessionListenerTest</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>T11ServletContextListenerTest</servlet-name>
+		<servlet-class>kr.or.ddit.basic.T11ServletContextListenerTest</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>T11ServletContextListenerTest</servlet-name>
+		<url-pattern>/T11ServletContextListenerTest</url-pattern>
+	</servlet-mapping>
+
+	
+<!--	<filter>
+		<filter-name>T08ServletFilter</filter-name>
+		<filter-class>kr.or.ddit.basic.T08ServletFilter</filter-class>
+		<init-param>
+			<param-name>init-param</param-name>
+			<param-value>이상민이냐</param-value>
+		</init-param>
+	</filter>
+	<filter-mapping>
+		<filter-name>T08ServletFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+	
+	<filter>
+		<filter-name>T08ServletFilter2</filter-name>
+		<filter-class>kr.or.ddit.basic.T08ServletFilter2</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>T08ServletFilter2</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>  -->
+	
+	
+	
+	<listener>
+		<display-name>MyServletRequestListener</display-name>
+		<listener-class>kr.or.ddit.basic.MyServletRequestListener</listener-class>
+	</listener>
+	
+	<listener>
+		<display-name>MyHttpSessionListener</display-name>
+		<listener-class>kr.or.ddit.basic.MyHttpSessionListener</listener-class>
+	</listener>
+	
+	<listener>
+		<display-name>MyServletContextListener</display-name>
+		<listener-class>kr.or.ddit.basic.MyServletContextListener</listener-class>
+	</listener>
+
+
+	<error-page>
+		<exception-type>javax.servlet.ServletException</exception-type>
+		<location>/T04ErrorHandler</location>
+	</error-page>
+	
 	<session-config>
 		<session-timeout>1</session-timeout> 
 	</session-config>
-
-
+	
 </web-app>

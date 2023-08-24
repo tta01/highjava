@@ -21,7 +21,7 @@ public class T06ServletSessionTest extends HttpServlet {
 	  	HttpSession session = req.getSession(boolean값);
 	  	
 	  	boolean값 : true인 경우 => 세션 객체가 존재하지 않으면 새로 생성한다.
-	  			  false인 경우 => 세션 객체가 존재하지 않으면 null을 리턴함
+	  			  false인 경우 => 세션 객체가 존재하지 않으면 null을 리턴함 / 세션이 이미 만들어져 있는지 확인할 경우에 사용(굳이 만들지 않아도 돼!!)
 	  				
 	  	- 세션 삭제처리 방법
 	  	1. invalidate() 메서드 호출
@@ -35,7 +35,6 @@ public class T06ServletSessionTest extends HttpServlet {
 		
 		// 세션을 가져오는데 없으면 새로 생성한다. 생성 안 하면 false??
 		HttpSession session = req.getSession(true); // ()비워두면 true
-		
 		
 		// 생성시간 가져오기
 		Date createTimeData = new Date(session.getCreationTime());
