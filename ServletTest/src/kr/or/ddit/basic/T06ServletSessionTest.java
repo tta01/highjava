@@ -84,7 +84,6 @@ public class T06ServletSessionTest extends HttpServlet {
 				+ "<tr><td>방문 횟수</td><td>"
 				+ visitCnt + "</td></tr>"
 				+ "</table></body></html>");
-		
 	}
 	
 	@Override

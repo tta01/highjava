@@ -36,10 +36,10 @@ public class T05ServletCookieTest extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		// 쿠키 생성(설정) 예제
-		// setCookieExam(req, resp);
+		 setCookieExam(req, resp);
 		
 		// 쿠키 정보 읽기 예제
-//		readCookieExam(req, resp);
+		readCookieExam(req, resp);
 		
 		// 쿠키 정보 삭제 예제
 		deleteCookieExam(req,resp);
@@ -171,8 +171,7 @@ public class T05ServletCookieTest extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		doGet(req, resp);
-		
-		
+	
 	}
 	
 }

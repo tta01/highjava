@@ -10,21 +10,20 @@ import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 
-public class T08ServletFilter implements Filter {
+public class T08ServletFilter implements Filter { // 인터페이스 filter를 구현(implements)해줌
 	/*
 	서블릿 필터에 대하여
 	
 	1. 사용목적
 	- 클라이언트의 요청을 수행하기 전에 가로채 필요한 작업을 수행할 수 있다.
 	- 클라이언트에 응답정보를 제공하기 전에 응답정보에 필요한 작업을 수행할 수 있다.
-	
+	 
 	2. 사용 예
 	- 인증필터 : 로그인 => 로그인 했으면 화면으로 넘겨주고 / 로그인 안 했으면 로그인 or 가입 페이지로 넘겨주는거
 	- 데이터 압축필터
-	- 인코딩 필터 : encoding 매번 req, resp에 안 써도 되게 끔!!
+	- 인코딩 필터 : encoding 매번 req, resp에 안 써도 되게 끔!!(중복코드 안 써도 됨)
 	- 로깅 및 감사처리 필터
 	- 이미지 변환 필터 등.
-	
 	 */
 
 	@Override

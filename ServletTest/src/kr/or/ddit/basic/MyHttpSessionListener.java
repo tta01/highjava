@@ -4,7 +4,11 @@ import javax.servlet.http.HttpSessionAttributeListener;
 import javax.servlet.http.HttpSessionBindingEvent;
 import javax.servlet.http.HttpSessionEvent;
 import javax.servlet.http.HttpSessionListener;
-
+/*
+ *  톰켓이 리스너를 듣고 있음
+ *  따로 생성해주면
+ *  듣고 있다가 특정 이벤트 발생시 자동으로 실행시킴 
+ */
 public class MyHttpSessionListener implements HttpSessionListener, HttpSessionAttributeListener {
 
 	@Override
