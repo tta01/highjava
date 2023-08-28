@@ -31,14 +31,14 @@ public class MyHttpSessionListener implements HttpSessionListener, HttpSessionAt
 	@Override
 	public void attributeRemoved(HttpSessionBindingEvent event) {
 		System.out.println("[MyHttpSessionListener] attributeRemoved 호출됨 =>"
-				+ event.getName() + " : " + event.getValue() );		
+							+ event.getName() + " : " + event.getValue() );		
 		
 	}
 
 	@Override
 	public void attributeReplaced(HttpSessionBindingEvent event) {
 		System.out.println("[MyHttpSessionListener] attributeReplaced 호출됨 =>"
-				+ event.getName() + " : " + event.getValue() );		
+							+ event.getName() + " : " + event.getValue() );		
 		
 	}
 	
