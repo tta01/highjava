@@ -27,7 +27,7 @@ import org.eclipse.jdt.internal.compiler.apt.model.Factory;
 public class T12UploadControllerTest extends HttpServlet {
 
 	private static final String UPLOAD_DIR = "upload_files";
-	// 메모리 임계크키(이 크기가 넘어가면 레파지토리에 임시파일로 저장됨)
+	// 메모리 임계크키(이 크기가 넘어가면 레파지토리에 임시파일로 저장됨) : 메모리 공간 절약을 위해서?
 	private static final int MEMORY_THREHOLD = 1024 * 1024 * 3; // 3MB넘어가면 임시파일로 저장
 	// 파일 1개당 최대 크기
 	private static final long MAX_FILE_SIZE = 1024 * 1024 * 40;

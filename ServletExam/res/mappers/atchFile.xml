@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="atchFile">
+
+	<insert id="insertAtchFile" parameterType="kr.or.ddit.comm.vo.AtchFileVO">
+	
+	<selectKey order="BEFORE" keyProperty="atchFileId" resultType="long"> 
+		select atch_file_seq.nextval from dual
+	</selectKey>
+
+		
+		insert into atch_file
+		(
+		ATCH_FILE_ID,
+		CREAT_DT,
+		USE_AT
+		)
+		values
+		(
+		#{atchFileId},
+		sysdate,
+		'Y'
+		)
+	
+	</insert>
+	
+	<insert id="insertAtchFileDetail">
+	
+		insert into atch_file_detail
+		(
+		ATCH_FILE_ID,
+		FILE_SN,
+		FILE_STRE_COURS,
+		STRE_FILE_NM,
+		ORIGNL_FILE_NM,
+		FILE_EXTSN,
+		FILE_CN,
+		FILE_SIZE
+		)
+		values
+		(
+		#{atchFileId},
+		(select nvl(max(file_sn),0)+1 from atch_file_detail
+			where atch_file_id = #{atchFileId}),     
+		#{fileStreCours},  
+		#{streFileNm},     
+		#{orignlFileNm, jdbcType=VARCHAR},   
+		#{fileExtsn},      
+		#{fileCn},         
+		#{fileSize}        
+		)
+	
+	</insert>
+	
+	<select id="getAtchFileList" resultType="kr.or.ddit.comm.vo.AtchFileVO">
+	
+		select * from atch_file_detail
+		where atch_file_id = #{atchFileId}
+		
+	</select>
+	
+	<select id="getAtchFileDetail" resultType="fileVO">
+	
+		select * from atch_file_detail
+		where atch_file_id = #{atchFileId}
+			and file_sn = #{fileSn}
+		
+	</select>
+
+<!-- 둘 중 하나 사용하면 됨 
+
+	resultType => 반환타입으로 클래스 자체를 가져와 참조
+					클래스 자체 값을 가져오는거라 내가 원하는 결과를 도출해내기 어려울 수 있음
+
+	resultMap	=> 반환타입으로 개발자가 xml 내에서 입의로 정의한 형식으로 참조
+					db컬럼명을 매핑시켜 사용자 임의대로 별칭을 지을 수 있음 -> 내가 원하는 결과 도출가능
+					Map이 좀 더 광범위하게? 사용 가능함
+  -->
+</mapper>

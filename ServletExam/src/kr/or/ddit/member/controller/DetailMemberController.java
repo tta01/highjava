@@ -1,6 +1,7 @@
 package kr.or.ddit.member.controller;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -8,6 +9,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import kr.or.ddit.comm.service.AtchFileServiceImpl;
+import kr.or.ddit.comm.service.IAtchFileService;
+import kr.or.ddit.comm.vo.AtchFileVO;
 import kr.or.ddit.member.service.IMemberService;
 import kr.or.ddit.member.service.MemberServiceImpl;
 import kr.or.ddit.member.vo.MemberVO;
@@ -25,6 +29,21 @@ public class DetailMemberController extends HttpServlet {
 		MemberVO mv = memService.getMember(memId);
 		
 		req.setAttribute("mv", mv);
+		
+		if(mv.getAtchFileId() > 0) {
+			
+			IAtchFileService fileService = AtchFileServiceImpl.getInstance();
+			
+			AtchFileVO atchFileVO = new AtchFileVO();
+			atchFileVO.setAtchFileId(mv.getAtchFileId());
+			
+			
+			List<AtchFileVO> fileList = fileService.getAtchFileList(atchFileVO);
+			
+			req.setAttribute("fileList", fileList);
+			
+		}
+		
 		
 		req.getRequestDispatcher("/views/member/detail.jsp").forward(req, resp);
 		

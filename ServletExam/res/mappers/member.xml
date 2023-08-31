@@ -31,8 +31,9 @@ INSERT INTO MYMEMBER (
 	mem_name, 
 	mem_tel,  
 	mem_addr, 
+	atch_file_id,
 	reg_dt    
-	) VALUES ( #{memId}, #{memName}, #{memTel}, #{memAddr}, sysdate)
+	) VALUES ( #{memId}, #{memName}, #{memTel}, #{memAddr}, #{atchFileId}, sysdate)
 
 </insert>
 
@@ -41,7 +42,8 @@ INSERT INTO MYMEMBER (
 	update MYMEMBER
 	set mem_name = #{memName},
 		mem_tel = #{memTel}, 
-		mem_addr = #{memAddr}
+		mem_addr = #{memAddr},
+		atch_file_id = #{atchFileId}
 	where mem_id = #{memId}
 	
 </update>
@@ -60,6 +62,7 @@ INSERT INTO MYMEMBER (
 			mem_name as memName,
 			mem_tel as memTel,
 			mem_addr as memAddr,
+			atch_file_id as atchFileId,
 			reg_dt as regDt
 	 from MYMEMBER
 	
@@ -74,6 +77,7 @@ INSERT INTO MYMEMBER (
 			mem_name as memName,
 			mem_tel as memTel,
 			mem_addr as memAddr,
+			atch_file_id as atchFileId,
 			reg_dt as regDt
 	 from MYMEMBER
 	 where mem_id = #{아무거나써봐}
@@ -92,6 +96,7 @@ INSERT INTO MYMEMBER (
 	<result column="mem_name" property="memName"/>
 	<result column="mem_tel" property="memTel"/>
 	<result column="mem_addr" property="memAddr"/>
+	<result column="atch_file_id" property="atchFileId"/>
 	<result column="reg_dt" property="regDt"/>
 </resultMap>
 

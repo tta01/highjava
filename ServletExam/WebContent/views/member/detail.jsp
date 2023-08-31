@@ -1,9 +1,14 @@
+<%@page import="kr.or.ddit.comm.vo.AtchFileVO"%>
+<%@page import="java.util.List"%>
 <%@page import="kr.or.ddit.member.vo.MemberVO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
 <%
 	MemberVO mv = (MemberVO) request.getAttribute("mv");
+
+	List<AtchFileVO> fileList = (List<AtchFileVO>) request.getAttribute("fileList");
+	
 
 %>
 
@@ -31,6 +36,22 @@
 			<td>주소:</td>
 			<td><%=mv.getMemAddr()%></td>
 		</tr>
+		<tr>
+			<td>첨부파일:</td>
+			<td>
+			<%
+				if(fileList != null) {
+					for(AtchFileVO fileVO : fileList) {
+			%>
+				<div><a href="<%=request.getContextPath() %>/download.do?fileId=<%=fileVO.getAtchFileId() %>&fileSn=<%=fileVO.getFileSn() %>"><%=fileVO.getOrignlFileNm() %></a></div>
+			<%
+					}
+				}
+			%>
+
+			</td>
+		</tr>
+		
 		<tr>
 			<td colspan="2">
 			<a href="list.do">[목록]</a>

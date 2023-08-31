@@ -41,7 +41,7 @@ public class T13UploadControllerTest2 extends HttpServlet {
 			
 			String fileName = "";
 			
-			for(Part part : req.getParts()) { // getParts - 멀티파트를 하나씩 가져올 수 있는 것
+				for(Part part : req.getParts()) { // getParts - 멀티파트를 하나씩 가져올 수 있는 것
 			
 			/*	System.out.println(part.getHeader("content-disposition")); // filename이 붙음
 				
@@ -50,7 +50,7 @@ public class T13UploadControllerTest2 extends HttpServlet {
 			*/
 				
 				fileName = part.getSubmittedFileName();
-				
+				// 파일인지 확인
 				if(fileName != null && !fileName.equals("")) { // 널 값, 빈 값
 					// 파일 저장
 					part.write(uploadPath + File.separator + fileName);

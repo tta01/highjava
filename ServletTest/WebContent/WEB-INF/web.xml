@@ -101,7 +101,7 @@
 		<filter-class>kr.or.ddit.basic.T08ServletFilter</filter-class>
 		<init-param>
 			<param-name>init-param</param-name>
-			<param-value>이상민</param-value>
+			<param-value>넣을 param값 작성</param-value>
 		</init-param>
 	</filter>
 	<filter-mapping>

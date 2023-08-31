@@ -19,6 +19,8 @@ public class MemberVO {
 	private String memTel;		// 회원전화번호
 	private String memAddr;		// 회원주소
 	
+	private long atchFileId = -1;	// 첨부파일 ID
+	
 	private Date regDt;			// 등록일시
 
 	public MemberVO(String memId, String memName, String memTel, String memAddr) {
@@ -70,6 +72,15 @@ public class MemberVO {
 		return regDt;
 	}
 	
+	
+	public long getAtchFileId() {
+		return atchFileId;
+	}
+
+	public void setAtchFileId(long atchFileId) {
+		this.atchFileId = atchFileId;
+	}
+
 	public String getRegDtDisplay() {
 		
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");

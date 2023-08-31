@@ -5,11 +5,27 @@
 <!-- 환경설정 -->
 <configuration>
 
-<properties resource="db.properties"/>
+	<properties resource="db.properties"/>
+	
+	<settings>
+	
+		<!-- DB컬럼명을 낙타표기법으로 표기한 속성명과 자동매핑 설정하기 -->
+		<setting name="mapUnderscoreToCamelCase" value="true"/>
+	
+		
+		<!--  
+		데이터 등록시 해당 속성 값이 존재하지 않으면 (즉, null인 경우)		
+		부적합한 열유형 1111 예외 발생함
+		이 경우 해당 JDBC타입을 명시적으로 알려주던지 아래와 같이 NULL속성에 대하여 
+		특정값으로 자동 설정이 가능함  대,소문자 꼭 구분!!!!!
+		-->
+		<setting name="jdbcTypeForNull" value="NULL"/>
+	</settings>
 
-<typeAliases>
-	<typeAlias type="kr.or.ddit.member.vo.MemberVO" alias="mvo"/>
-</typeAliases>
+	<typeAliases>
+		<typeAlias type="kr.or.ddit.member.vo.MemberVO" alias="mvo"/>
+		<typeAlias type="kr.or.ddit.comm.vo.AtchFileVO" alias="fileVO"/>
+	</typeAliases>
 
 
 	<environments default="dev">
@@ -28,6 +44,7 @@
 
 <mappers>
 	<mapper resource="mappers/member.xml"/>
+	<mapper resource="mappers/atchFile.xml"/>
 </mappers>
 
 </configuration>
